@@ -1,0 +1,64 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:planirovshik"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="planirovshik.MainWindow"
+        Width="800"
+        Height="450"
+        Title="planirovshik"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <local:TextDecorationConverter x:Key="TextDecorationConverter" />
+    </Window.Resources>
+    <Window.Styles>
+        <Style Selector="ListBoxItem:selected /template/ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#E6E6E6"></Setter>
+            <Setter Property="BorderBrush" Value="Transparent"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+        </Style>
+        <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="Transparent"></Setter>
+        </Style>
+        <Style Selector="Button">
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="Transparent"></Setter>
+            </Style>
+        </Style>
+    </Window.Styles>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="Календарь" Margin="0 5 0 5" HorizontalAlignment="Center"/>
+            <Calendar x:Name="Calendar" Background="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 0 0 0"
+                      SelectedDatesChanged="AddEvent" Width="350" Height="350"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Orientation="Vertical">
+            <TextBlock Text="Список дел на сегодня" HorizontalAlignment="Center" Margin="0 5 0 5"/>
+            <ListBox Name="TaskLB" Width="350" Height="335" DoubleTapped="EditTask" BorderBrush="#E6E6E6" Background="White" BorderThickness="1.5">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="local:Task">
+                        <Border BorderBrush="#E6E6E6" BorderThickness="0 0 0 1.5">
+                            <TextBlock Text="{Binding TaskName}" PointerPressed="TaskCheck" HorizontalAlignment="Left"
+                                       ToolTip.Tip="Если задача выполнена нажмите правую кнопку мыши">
+                                <TextBlock.TextDecorations>
+                                    <Binding Path="IsCompleted" Converter="{StaticResource TextDecorationConverter}" />
+                                </TextBlock.TextDecorations>
+                            </TextBlock>
+                        </Border>
+                        
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <Button Content="Добавить" Name="AddBtn" Click="Add" Margin="0,0,10,0" />
+                <Button Content="Удалить" Name="DelBtn" Click="Delete" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="planirovshik/App.axaml" value="planirovshik/planirovshik.csproj" />
+        <entry key="planirovshik/MainWindow.axaml" value="planirovshik/planirovshik.csproj" />
+        <entry key="planirovshik/Windows/AddEvent.axaml" value="planirovshik/planirovshik.csproj" />
+        <entry key="planirovshik/Windows/AddTaskWin.axaml" value="planirovshik/planirovshik.csproj" />
+        <entry key="planirovshik/Windows/DelTaskWin.axaml" value="planirovshik/planirovshik.csproj" />
+        <entry key="planirovshik/Windows/EditTaskWin.axaml" value="planirovshik/planirovshik.csproj" />
+        <entry key="planirovshik/Windows/MainWindow.axaml" value="planirovshik/planirovshik.csproj" />
+      </map>
+    </option>
+  </component>
+</project>
