@@ -101,7 +101,7 @@ namespace planirovshik
             };
         }
 
-        private void Delete(object? sender, RoutedEventArgs e)
+        public void Delete(object? sender, RoutedEventArgs e)
         {
             int selectedIndex = TaskLB.SelectedIndex;
             if (selectedIndex == -1)
@@ -118,10 +118,9 @@ namespace planirovshik
                 TaskLB.ItemsSource = _tasks;
                 TaskLB.SelectedItem = null;
             };
-
         }
 
-        private void TaskCheck(object? sender, PointerPressedEventArgs e)
+        public void TaskCheck(object? sender, PointerPressedEventArgs e)
         {
             if (e.GetCurrentPoint((Visual?)sender).Properties.IsRightButtonPressed)
             {
@@ -151,8 +150,10 @@ namespace planirovshik
             var eventStorage = new EventStotage("event.json");
             List<Event> events = eventStorage.LoadEvents();
             Event existingEvent = events.FirstOrDefault(e => e.EventDate.Date == date.Date);
+
+            DateTime? selDate = Calendar.SelectedDate;
             
-            var eventWindow = new AddEvent(existingEvent?.EventName);
+            var eventWindow = new AddEvent(selDate, existingEvent?.EventName);
             eventWindow.Closed += delegate
             {
                 isEventWinOpen = false;

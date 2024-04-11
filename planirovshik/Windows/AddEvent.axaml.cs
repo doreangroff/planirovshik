@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Text.Json;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
@@ -15,16 +18,25 @@ public partial class AddEvent : Window
     private readonly Event _event;
     private readonly EventStotage _eventStotage;
 
-    public AddEvent(string existingEvent = null)
+    public AddEvent(DateTime? date, string existingEvent = null)
     {
         InitializeComponent();
         DataContext = this;
         _event = new Event();
-        _event.EventDate = DateTime.Today;
+        _event.EventDate = (DateTime)date;
         _eventStotage = new EventStotage("events.json");
         if (!string.IsNullOrEmpty(existingEvent))
         {
             EventName = existingEvent;
+        }
+        string json = File.ReadAllText("events.json");
+        List<Event> events = JsonSerializer.Deserialize<List<Event>>(json);
+        foreach (Event e in events)
+        {
+            if (e.EventDate.Date == date)
+            {
+                NameTB.Text = e.EventName;
+            }
         }
     }
 
@@ -42,6 +54,11 @@ public partial class AddEvent : Window
             events.Add(_event);
         }
         _eventStotage.SaveEvents(events);
+        this.Close();
+    }
+
+    private void Back(object? sender, RoutedEventArgs e)
+    {
         this.Close();
     }
 }

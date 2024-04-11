@@ -14,6 +14,7 @@ public partial class AddTaskWin : Window
     public AddTaskWin()
     {
         InitializeComponent();
+        MainTasksList = new ObservableCollection<Task>();
     }
 
     private void Save(object? sender, RoutedEventArgs e)

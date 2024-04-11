@@ -36,4 +36,12 @@
     <ItemGroup>
       <None Remove="Sounds\teches.wav" />
     </ItemGroup>
+
+
+    <ItemGroup>
+      <None Remove="Icons\calendar-icon_34471.ico" />
+      <AvaloniaResource Include="Icons\calendar.ico" />
+      <None Remove="Icons\task.ico" />
+      <AvaloniaResource Include="Icons\task.ico" />
+    </ItemGroup>
 </Project>

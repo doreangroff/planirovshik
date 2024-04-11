@@ -7,8 +7,9 @@
         x:Class="planirovshik.MainWindow"
         Width="800"
         Height="450"
-        Title="planirovshik"
-        WindowStartupLocation="CenterScreen">
+        Title="Планировщик дел"
+        WindowStartupLocation="CenterScreen"
+        Icon="/Icons/calendar.ico">
     <Window.Resources>
         <local:TextDecorationConverter x:Key="TextDecorationConverter" />
     </Window.Resources>
